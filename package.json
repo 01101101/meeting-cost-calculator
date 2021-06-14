@@ -6,6 +6,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@fontsource/noto-sans-jp": "^4.4.5",
     "vue": "^3.0.5"
   },
   "devDependencies": {
