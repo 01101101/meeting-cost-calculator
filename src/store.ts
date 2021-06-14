@@ -49,6 +49,9 @@ export const store = createStore<State>({
     updateParticipant(state, { id, properties }) {
       Object.assign(state.participants.find(participant => participant.id === id), properties)
     },
+    updateMeetingDuration(state, { day, duration }) {
+      state.meetings[day].duration = duration
+    },
   },
   actions: {
     addParticipant({ commit }) {
@@ -62,6 +65,9 @@ export const store = createStore<State>({
     },
     updateParticipantSalary({ commit }, { id, salary }) {
       commit('updateParticipant', { id, properties: { salary } })
+    },
+    incrementMeeting({ commit, state }, day) {
+      commit('updateMeetingDuration', { day, duration: (state.meetings[day].duration + 1) % 4 })
     },
   }
 })

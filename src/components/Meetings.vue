@@ -18,7 +18,8 @@
         :key="day"
         :class="['h-4 rounded-sm cursor-pointer hover:bg-blue-100', ['bg-gray-200', 'bg-green-400', 'bg-yellow-400', 'bg-red-400'][store.state.meetings[day].duration]]"
         @mouseover="currentDay = day"
-        @mouseout="currentDay = -1"></div>
+        @mouseout="currentDay = -1"
+        @click="increment(day)"></div>
     </div>
   </div>
 </template>
@@ -53,4 +54,6 @@ const weekly = () => {
 const monthly = () => {
   reset()
 }
+
+const increment = (day: number) => store.dispatch('incrementMeeting', day)
 </script>
