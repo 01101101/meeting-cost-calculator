@@ -46,6 +46,9 @@ export const store = createStore<State>({
     removeParticipant(state, id) {
       state.participants = state.participants.filter(participant => participant.id !== id)
     },
+    updateParticipant(state, { id, properties }) {
+      Object.assign(state.participants.find(participant => participant.id === id), properties)
+    },
   },
   actions: {
     addParticipant({ commit }) {
@@ -53,6 +56,12 @@ export const store = createStore<State>({
     },
     removeParticipant({ commit }, id) {
       commit('removeParticipant', id)
+    },
+    updateParticipantName({ commit }, { id, name }) {
+      commit('updateParticipant', { id, properties: { name } })
+    },
+    updateParticipantSalary({ commit }, { id, salary }) {
+      commit('updateParticipant', { id, properties: { salary } })
     },
   }
 })

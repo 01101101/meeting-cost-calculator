@@ -8,4 +8,9 @@ import '@fontsource/noto-sans-jp/900.css'
 
 createApp(App)
   .use(store, key)
+  .directive('focus', {
+    mounted(el) {
+      el.focus()
+    }
+  })
   .mount('#app')
