@@ -27,8 +27,24 @@ export const store = createStore<State>({
   getters: {
   },
   mutations: {
+    addParticipant(state) {
+      state.participants.push({
+        id: Math.random().toString(36).substr(2, 9),
+        name: `Participant ${state.participants.length}`,
+        salary: 100000
+      })
+    },
+    removeParticipant(state, id) {
+      state.participants = state.participants.filter(participant => participant.id !== id)
+    },
   },
   actions: {
+    addParticipant({ commit }) {
+      commit('addParticipant')
+    },
+    removeParticipant({ commit }, id) {
+      commit('removeParticipant', id)
+    },
   }
 })
 
