@@ -16,7 +16,7 @@
       <div
         v-for="(_ , day) in 365"
         :key="day"
-        :class="['h-4 rounded-sm cursor-pointer hover:bg-blue-100', ['bg-gray-200', 'bg-green-400', 'bg-yellow-400', 'bg-red-400'][store.state.meetings[day].duration]]"
+        :class="['h-4 rounded-sm cursor-pointer hover:bg-blue-100', ['bg-gray-200', 'bg-green-200', 'bg-green-300', 'bg-green-400', 'bg-green-500', 'bg-green-600', 'bg-green-700', 'bg-green-800', 'bg-green-900'][store.state.meetings[day].duration]]"
         @mouseover="currentDay = day"
         @mouseout="currentDay = -1"
         @click="increment(day)"></div>
@@ -47,7 +47,7 @@ const daily = () => {
   reset()
   store.dispatch('updateMeetingsDuration', Array.from({ length: 365 }, (_, day) => {
     const dayOfWeek = new Date(new Date().getFullYear(), 0, day + 1).getDay()
-    return dayOfWeek === 0 || dayOfWeek === 6 ? 0 : 1
+    return dayOfWeek === 0 || dayOfWeek === 6 ? 0 : 2
   }))
 }
 
@@ -55,7 +55,7 @@ const weekly = () => {
   reset()
   store.dispatch('updateMeetingsDuration', Array.from({ length: 365 }, (_, day) => {
     const dayOfWeek = new Date(new Date().getFullYear(), 0, day + 1).getDay()
-    return dayOfWeek === 1 ? 1 : 0
+    return dayOfWeek === 1 ? 2 : 0
   }))
 }
 
@@ -63,7 +63,7 @@ const monthly = () => {
   reset()
   store.dispatch('updateMeetingsDuration', Array.from({ length: 365 }, (_, day) => {
     const dayOfMonth = new Date(new Date().getFullYear(), 0, day + 1).getDate()
-    return dayOfMonth === 1 ? 1 : 0
+    return dayOfMonth === 1 ? 2 : 0
   }))
 }
 

@@ -70,7 +70,7 @@ export const store = createStore<State>({
       commit('updateParticipant', { id, properties: { salary } })
     },
     incrementMeeting({ commit, state }, day) {
-      commit('updateMeetingDuration', { day, duration: (state.meetings[day].duration + 1) % 4 })
+      commit('updateMeetingDuration', { day, duration: (state.meetings[day].duration + 1) % 9 })
     },
     updateMeetingsDuration({ commit }, durations) {
       commit('updateMeetingsDuration', durations)
