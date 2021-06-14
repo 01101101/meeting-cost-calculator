@@ -34,7 +34,7 @@ const currentDayDescription = computed(() => {
   if (currentDay.value != -1) {
     const date = new Intl.DateTimeFormat('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(new Date().getFullYear(), 0, currentDay.value + 1))
     const meetingDuration = store.state.meetings[currentDay.value].duration
-    return meetingDuration !== 0 ? `$date | ${meetingDuration}h` : date
+    return meetingDuration !== 0 ? `${date} | ${meetingDuration}h` : date
   }
   const meetingsDuration = store.state.meetings.reduce((total, meeting) => total + meeting.duration, 0)
   return meetingsDuration === 0 ? 'No meetings' : `${meetingsDuration}h of meetings this year`
