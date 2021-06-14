@@ -7,6 +7,9 @@ module.exports = {
       fontFamily: {
         'sans': ['Noto Sans JP'],
       },
+      gridTemplateRows: {
+        '7': 'repeat(7, minmax(0, 1fr))',
+      },
     },
   },
   variants: {
