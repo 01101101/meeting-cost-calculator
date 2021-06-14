@@ -1,6 +1,10 @@
 import { InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
 
+const WorkedDaysPerYear = 261
+const WorkedHoursPerDay = 8
+const WorkedHoursPerYear = WorkedDaysPerYear * WorkedHoursPerDay
+
 export interface Participant {
   id: string
   name: string
@@ -25,6 +29,11 @@ export const store = createStore<State>({
     meetings: Array.from({ length: 365 }, (_, day) => ({ day, duration: 0 })),
   },
   getters: {
+    totalCosts(state) {
+      const hourlyCost = state.participants.reduce((total, participant) => total + participant.salary / WorkedHoursPerYear, 0)
+      const meetingsDuration = state.meetings.reduce((total, meeting) => total + meeting.duration, 0)
+      return meetingsDuration * hourlyCost
+    },
   },
   mutations: {
     addParticipant(state) {
