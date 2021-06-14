@@ -41,18 +41,30 @@ const currentDayDescription = computed(() => {
   return meetingsDuration === 0 ? 'No meetings' : `${meetingsDuration}h of meetings this year`
 })
 
-const reset = () => {}
+const reset = () => store.dispatch('updateMeetingsDuration', Array(365).fill(0))
 
 const daily = () => {
   reset()
+  store.dispatch('updateMeetingsDuration', Array.from({ length: 365 }, (_, day) => {
+    const dayOfWeek = new Date(new Date().getFullYear(), 0, day + 1).getDay()
+    return dayOfWeek === 0 || dayOfWeek === 6 ? 0 : 1
+  }))
 }
 
 const weekly = () => {
   reset()
+  store.dispatch('updateMeetingsDuration', Array.from({ length: 365 }, (_, day) => {
+    const dayOfWeek = new Date(new Date().getFullYear(), 0, day + 1).getDay()
+    return dayOfWeek === 1 ? 1 : 0
+  }))
 }
 
 const monthly = () => {
   reset()
+  store.dispatch('updateMeetingsDuration', Array.from({ length: 365 }, (_, day) => {
+    const dayOfMonth = new Date(new Date().getFullYear(), 0, day + 1).getDate()
+    return dayOfMonth === 1 ? 1 : 0
+  }))
 }
 
 const increment = (day: number) => store.dispatch('incrementMeeting', day)

@@ -52,6 +52,9 @@ export const store = createStore<State>({
     updateMeetingDuration(state, { day, duration }) {
       state.meetings[day].duration = duration
     },
+    updateMeetingsDuration(state, durations) {
+      state.meetings.forEach((meeting, day) => meeting.duration = durations[day])
+    },
   },
   actions: {
     addParticipant({ commit }) {
@@ -68,6 +71,9 @@ export const store = createStore<State>({
     },
     incrementMeeting({ commit, state }, day) {
       commit('updateMeetingDuration', { day, duration: (state.meetings[day].duration + 1) % 4 })
+    },
+    updateMeetingsDuration({ commit }, durations) {
+      commit('updateMeetingsDuration', durations)
     },
   }
 })
